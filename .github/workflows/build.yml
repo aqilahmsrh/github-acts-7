@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - DEV
+      - aqilah
   pull_request: 
     branches: 
       - main
-      - DEV
+      - aqilah
 
   workflow_dispatch:
 
