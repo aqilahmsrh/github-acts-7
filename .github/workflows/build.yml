@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - DEV
+      - aqil
   pull_request: 
     branches: 
       - main
-      - DEV
+      - aqil
 
   workflow_dispatch:
 
@@ -65,14 +65,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_LAMBDA_REGION }}
-
-      - name: 'Check S3 Bucket'
-        run: |
-          aws s3api wait object-exists \
-            --bucket ${{ secrets.AWS_S3_BUCKET_NAME }} \
-            --key ${{ steps.generate_tag_version.outputs.tag }}.zip \
-            --cli-read-timeout 60 \
-            --cli-connect-timeout 60
             
       - name: AWS CodeBuild
         if: ${{ success() }}
